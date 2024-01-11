@@ -79,8 +79,25 @@ const SelectedSoundOptions = (props) => {
         if(sounds.length === 1)
         {
             setControlsDisabled(true);
+            dispatchSound({type : "DeleteSound", id : currentSoundId})
         }
-        dispatchSound({type : "DeleteSound", id : id})
+        else{
+            //if its not the last sound then we also need to set a new sound
+            //this is a problem. The sound state should be increased to include current sound ID and all of its associated sound stuff.
+            //For now I will just have to go through the array like this
+            console.log(currentSoundId)
+            const index = sounds.findIndex(sound => sound.id === currentSoundId)
+            if(index < sounds.length-1)
+            {
+                handleSetCurrentSoundID(sounds[sounds.length-1].id)
+            }
+            else{
+                handleSetCurrentSoundID(sounds[sounds.length-2].id)
+
+            }
+            dispatchSound({type : "DeleteSound", id : currentSoundId})
+
+        }
     }
     
 
