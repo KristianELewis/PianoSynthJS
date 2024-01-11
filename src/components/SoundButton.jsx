@@ -12,7 +12,7 @@ easiest way to get hover on keys, was to make a keys class and in the app.css ad
 
  const WhiteKey = (props) => {
     const {handleClick, placement} = props;
-    const left = (42 * placement);
+    const left = (40 * placement);
     return (
         <div
             className = "keys"
@@ -24,7 +24,8 @@ easiest way to get hover on keys, was to make a keys class and in the app.css ad
                 position : "absolute",
                 border : "1px black solid",
                 top : "0px",
-                left : left + "px"
+                left : left + "px",
+                boxSizing : "border-box"
                 }}>
             
         </div>
@@ -33,18 +34,19 @@ easiest way to get hover on keys, was to make a keys class and in the app.css ad
 
 const BlackKey = (props) => {
     const {handleClick, placement} = props;
-    const left = (42 * placement) - 11;
+    const left = (40 * placement) -10; //The 11 is half the width of a black key. It so a black key will be inbetween 2 different white keys
     return (
         <div
             className = "keys"
             onClick = {handleClick}
             style = {{
-                width : "22px", 
+                width : "20px", 
                 height : "70px", 
                 backgroundColor : "black", 
                 position : "absolute",
                 top : "0px",
-                left : left + "px"
+                left : left + "px",
+                boxSizing : "border-box"
                 }}>
 
         </div>

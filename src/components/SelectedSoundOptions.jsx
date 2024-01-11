@@ -1,14 +1,27 @@
 import { useState, useRef, useReducer } from 'react'
+import ControlKnob from './ControlKnob'
+import WaveButton from './WaveButton'
+import GenericButton from './GenericButton'
+import ControlKnobPanel from './ControlKnobPanel'
+import NoiseScreen from './NoiseScreen'
+
+/*
+When no sound is selected, buttons and dials should be deactivated and visually dark/deactivated looking
+
+when active the cursor should be click cursor
+
+*/
+
 
 const SelectedSoundOptions = (props) => {
     const {audioContext, dispatchSound, id, currentSoundId,
         waveType, setWaveType, 
         octave, setOctave,
-        gain, setGain} = props;
-    if(currentSoundId === null)
+        gain, setGain, setMouseMove, sounds, handleAddNewSound, handleSetCurrentSoundID} = props;
+    /*if(currentSoundId === null)
     {
         return <p>no sound</p>
-    }
+    }*/
     const [playOrStop, setPlayOrStop] = useState("Play")
     const [soundState, setSoundState] = useState(null)
 
@@ -40,58 +53,63 @@ const SelectedSoundOptions = (props) => {
             }
         }
     }
-    const handleOctave = (e) => {
+    const handleOctave = (value) => {
         if(soundState !==null){
-            soundState.o.frequency.setValueAtTime((baseFrequency * Math.pow(2, e.target.value)), audioContext.currentTime)
+            soundState.o.frequency.setValueAtTime((baseFrequency * Math.pow(2, value)), audioContext.currentTime)
         }
-        setOctave(e.target.value)
-        dispatchSound({type : "ChangeOctave", octave : e.target.value, id : id})
+        setOctave(value)
+        dispatchSound({type : "ChangeOctave", octave : value, id : id})
     }
-    const handleGain = (e) => {
+    const handleGain = (value) => {
         if(soundState !==null){
-            soundState.g.gain.setValueAtTime(e.target.value /100, audioContext.currentTime);
+            soundState.g.gain.setValueAtTime(value /100, audioContext.currentTime);
         }
-        setGain(e.target.value)
-        dispatchSound({type : "ChangeGain", gain : e.target.value, id : id})
+        setGain(value)
+        dispatchSound({type : "ChangeGain", gain : value, id : id})
 
     }
-    const handleWaveTypeChange = (e) => {
+    const handleWaveTypeChange = (value) => {
         if(soundState !==null){
-            soundState.o.type = e.target.value;
+            soundState.o.type = value;
         }
-        setWaveType(e.target.value)
-        dispatchSound({type : "ChangeWaveType", waveType : e.target.value, id : id})
+        setWaveType(value)
+        dispatchSound({type : "ChangeWaveType", waveType : value, id : id})
     }
     const handleDelete = () => {
         dispatchSound({type : "DeleteSound", id : id})
     }
     
-    return (
-        <div style = {{width: "400px", height : "250px", border: "solid grey 1px", padding: "10px"}}>
-                <p>C Frequency at octave {octave}: {baseFrequency * Math.pow(2, octave)}</p>
-                <div>
-                    <p>Octave: {octave}</p>
-                    <input type="range" step={1} min = {0} max = {8} onChange = {handleOctave} value = {octave}/>
-                </div>
-                <div>
-                    <p>Volume: {gain}</p>
-                    <input type="range" step={1} min = {0} max = {100} onChange = {handleGain} value = {gain}/>
-                </div>
-                <div style = {{display: "flex", justifyContent : "space-between", alignContent : "center", alignItems : "center"}}>
-                    <p>Wave Type:</p>
-                    <select onChange = {handleWaveTypeChange} value = {waveType} size="small">
-                        <option value="sine">sine</option>
-                        <option value="square">square</option>
-                        <option value="sawtooth">sawtooth</option>
-                        <option value="triangle">triangle</option>
-                    </select>
-                </div>
-                <div style = {{marginTop: "10px", display: "flex", justifyContent : "space-between"}}>
-                    <button onClick = {handlePlayOrStop} >{playOrStop}</button>
-                    <button onClick = {handleDelete} >remove sound</button>
-                </div>
 
-        </div>
+
+    return (
+        <>
+        {/*<div style = {{width: "300px", height : "250px", boxSizing: "border-box",border: "solid grey 1px", padding: "10px", backgroundImage : "url(backgroundPanel.png)", backgroundPosition : "center"}}>*/}
+                {/*<p>C Frequency at octave {octave}: {baseFrequency * Math.pow(2, octave)}</p>*/}
+                <ControlKnobPanel setMouseMove = {setMouseMove} handleOctave = {handleOctave} octave = {octave} handleGain = {handleGain} gain = {gain}/>
+                <div id = "waveformContainer">
+                    <div id = "waveformDisplayConatiner">
+                        {/*<div id = "waveformDisplay">*/}
+                            <NoiseScreen sounds = {sounds} audioContext = {audioContext} dispatchSound = {dispatchSound} handleSetCurrentSoundID = {handleSetCurrentSoundID} handleAddNewSound = {handleAddNewSound}/>
+                        {/*</div>*/}
+                    </div>
+                    <div id = "buttonContainer">
+                        <div style = {{display: "flex", justifyContent : "space-between", alignContent : "center", alignItems : "center"}}>
+                            <p className = "controlPanelText">Wave Type</p>
+                            <div style = {{display : "grid", gridTemplateColumns: "70px 70px"}}>
+                                <WaveButton className = "waveButton" type = {"sine"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange}/>
+                                <WaveButton className = "waveButton" type = {"square"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange}/>
+                                <WaveButton className = "waveButton" type = {"sawtooth"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange}/>
+                                <WaveButton className = "waveButton" type = {"triangle"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange}/>
+                            </div>
+                        </div>
+                        <div style = {{marginTop: "10px", display: "flex", justifyContent : "space-between"}}>
+                            <GenericButton clickFunction = {handlePlayOrStop} name = {playOrStop}/>
+                            <GenericButton clickFunction = {handleDelete} name = {"remove sound"}/>
+                        </div>
+                    </div>
+                </div>
+        {/*</div>*/}
+        </>
     )
 }
 export default SelectedSoundOptions

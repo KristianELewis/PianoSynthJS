@@ -1,3 +1,148 @@
+.soundBoard {
+  /*background-color: darkslategray;*/
+  display : flex;
+  flex-direction : column;
+  justify-content : center;
+  align-items: center;
+  /*background-color: black;*/
+}
+body {
+  background-color: black;
+  display: flex;
+  height: 100vh;
+  flex-direction : column;
+  justify-content: center;
+}
+.sounds {
+  background-color : black;
+  display : flex;
+  box-sizing : border-box;
+  flex-direction : column;
+  width : 250px;
+  height: 100%;
+  align-items : center;
+  padding : 10px;
+  overflow-y : scroll;
+  border : grey 1px solid;
+  border-radius: 5px;
+}
+.soundButton {
+  color: green;
+  border: 1px solid green;
+  border-style: solid none solid none;
+  height: 40px;
+  min-height: 40px;
+  width: 210px;
+  background-color: black;
+  cursor: pointer;
+}
+.soundButton:hover {
+  border-color: white;
+}
+.soundSelection {
+  background-color: black;
+}
+#controlKnobsContainer {
+  background-image : url(knobPanelVertical.png);
+  width: 100px;
+  height: 300px;
+  display : flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.controlKnob {
+  position: relative;
+  background-color: grey;
+  width : 50px;
+  height : 50px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px black;
+  border: solid 1px white;
+  background-color: black;
+  
+  /*radial-gradient(
+    #000000 0%,
+    #000000 60%,
+    #ffffff 75%,
+    #ffffff 95%
+  );*/
+  margin: auto;
+}
+.controlKnobLine {
+  position : absolute;
+  left : 0px;
+  top: 23.5px;
+  background-color: white;
+  width : 15px;
+  height : 3px;
+  box-shadow: 0px 0px 1px black;
+
+}
+.controlPanelText {
+  text-shadow: #ffffff 0px 0px 10px,
+  black 0px 0px 3px;
+  user-select: none;
+  margin: 10px 0px 10px 0px;
+}
+#waveformContainer {
+  box-sizing : border-box;
+  width: 300px;
+  height : 300px;
+  background-image: url(waveformContainer.png);
+}
+#waveformDisplayConatiner {
+  box-sizing : border-box;
+  padding : 25px;
+  width: 300px;
+  height : 175px;
+
+}
+#waveformDisplay {
+  box-sizing : border-box;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+
+}
+#buttonContainer {
+  padding: 0px 10px 10px 10px;
+}
+.waveButton {
+  background-image: url(buttonBackground.png);
+  font-size: 10px;
+  text-transform: uppercase;
+  text-shadow: #ffffff 0px 0px 10px,
+  black 0px 0px 3px;
+  height: 30px;
+  width: 70px;
+}
+.waveButtonSelected {
+  background-image: url(buttonBackground.png);
+  font-size: 10px;
+  text-transform: uppercase;
+  box-shadow: 0px 0px 2px yellow;
+  color: yellow;
+  text-shadow: #ffffff 0px 0px 10px,
+  black 0px 0px 3px;
+  height: 30px;
+  width: 70px;
+}
+.genericButton {
+  background-image: url(buttonBackground.png);
+  font-size: 10px;
+  text-transform: uppercase;
+  text-shadow: #ffffff 0px 0px 10px,
+  black 0px 0px 3px;
+  height: 30px;
+  width: 70px;
+}
+/*
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+*/
 /*:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -34,26 +179,6 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

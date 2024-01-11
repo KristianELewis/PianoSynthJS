@@ -1,5 +1,9 @@
 import React, {useContext} from 'react'
 
+/*
+This file isn't used anymore
+Ill probably remove it after major changes have been completed, but I'm keeping it until I'm sure I won't need to look at it
+*/
 import { programContext } from '../../Context';
 
 import SoundBoard from './components/SoundBoard'

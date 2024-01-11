@@ -10,6 +10,14 @@ import Button from '@mui/material/Button';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 */
+
+/*
+
+
+    maybe just remove this file
+
+
+*/
 const IndividualNoise = (props) => {
     /*audioContext, dispatchSound,*/
     const { setCurrentSoundId, id } = props;
@@ -111,9 +119,7 @@ const IndividualNoise = (props) => {
         </div>
     )*/
     return (
-        <div style = {{border: "1px solid grey"}} >
-            <button onClick = {()=>{setCurrentSoundId(id)}}>A Sound</button>
-        </div>
+            <button className = "soundButton" onClick = {()=>{setCurrentSoundId(id)}}>A Sound</button>
     )
 }
 
