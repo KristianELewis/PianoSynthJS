@@ -131,7 +131,7 @@ const SelectedSoundOptions = (props) => {
                         </div>
                     </div>
                 </div>
-                <ControlKnobPanel setMouseMove = {setMouseMove} handleOctave = {handleOctave} octave = {octave} handleGain = {handleGain} gain = {gain}/>
+                <ControlKnobPanel setMouseMove = {setMouseMove} handleOctave = {handleOctave} octave = {octave} handleGain = {handleGain} gain = {gain} controlsDisabled = {controlsDisabled}/>
         {/*</div>*/}
         </>
     )

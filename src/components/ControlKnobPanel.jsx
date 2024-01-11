@@ -5,7 +5,7 @@ import ControlKnob from "./ControlKnob";
 
 
 const ControlKnobPanel = (props) => {
-    const {setMouseMove, handleOctave, octave, handleGain, gain} = props;
+    const {setMouseMove, handleOctave, octave, handleGain, gain, controlsDisabled} = props;
     return (
         <div id = "controlKnobsContainer">
             {/*Maybe make a component for these or condense them into the controlknob component*/}
