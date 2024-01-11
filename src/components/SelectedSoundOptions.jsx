@@ -24,7 +24,7 @@ const SelectedSoundOptions = (props) => {
     }*/
     const [playOrStop, setPlayOrStop] = useState("Play")
     const [soundState, setSoundState] = useState(null)
-
+    const [controlsDisabled, setControlsDisabled] = useState(true);
     let baseFrequency = 16.35;
 
     const handlePlayOrStop = () => {
@@ -76,38 +76,45 @@ const SelectedSoundOptions = (props) => {
         dispatchSound({type : "ChangeWaveType", waveType : value, id : id})
     }
     const handleDelete = () => {
+        if(sounds.length === 1)
+        {
+            setControlsDisabled(true);
+        }
         dispatchSound({type : "DeleteSound", id : id})
     }
     
 
-
+    const handleAddNewSound2 = () => { //this needs to be removed when components are consolidated
+        setControlsDisabled(false);
+        handleAddNewSound();
+    }
     return (
         <>
         {/*<div style = {{width: "300px", height : "250px", boxSizing: "border-box",border: "solid grey 1px", padding: "10px", backgroundImage : "url(backgroundPanel.png)", backgroundPosition : "center"}}>*/}
                 {/*<p>C Frequency at octave {octave}: {baseFrequency * Math.pow(2, octave)}</p>*/}
-                <ControlKnobPanel setMouseMove = {setMouseMove} handleOctave = {handleOctave} octave = {octave} handleGain = {handleGain} gain = {gain}/>
                 <div id = "waveformContainer">
                     <div id = "waveformDisplayConatiner">
                         {/*<div id = "waveformDisplay">*/}
-                            <NoiseScreen sounds = {sounds} audioContext = {audioContext} dispatchSound = {dispatchSound} handleSetCurrentSoundID = {handleSetCurrentSoundID} handleAddNewSound = {handleAddNewSound}/>
+                            <NoiseScreen sounds = {sounds} audioContext = {audioContext} dispatchSound = {dispatchSound} handleSetCurrentSoundID = {handleSetCurrentSoundID} handleAddNewSound = {handleAddNewSound2} controlsDisabled = {controlsDisabled}/>
                         {/*</div>*/}
                     </div>
                     <div id = "buttonContainer">
                         <div style = {{display: "flex", justifyContent : "space-between", alignContent : "center", alignItems : "center"}}>
                             <p className = "controlPanelText">Wave Type</p>
                             <div style = {{display : "grid", gridTemplateColumns: "70px 70px"}}>
-                                <WaveButton className = "waveButton" type = {"sine"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange}/>
-                                <WaveButton className = "waveButton" type = {"square"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange}/>
-                                <WaveButton className = "waveButton" type = {"sawtooth"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange}/>
-                                <WaveButton className = "waveButton" type = {"triangle"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange}/>
+                                <WaveButton className = "waveButton" type = {"sine"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange} controlsDisabled = {controlsDisabled}/>
+                                <WaveButton className = "waveButton" type = {"square"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange} controlsDisabled = {controlsDisabled}/>
+                                <WaveButton className = "waveButton" type = {"sawtooth"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange} controlsDisabled = {controlsDisabled}/>
+                                <WaveButton className = "waveButton" type = {"triangle"} selectedType = {waveType} handleWaveTypeChange = {handleWaveTypeChange} controlsDisabled = {controlsDisabled}/>
                             </div>
                         </div>
                         <div style = {{marginTop: "10px", display: "flex", justifyContent : "space-between"}}>
-                            <GenericButton clickFunction = {handlePlayOrStop} name = {playOrStop}/>
-                            <GenericButton clickFunction = {handleDelete} name = {"remove sound"}/>
+                            <GenericButton clickFunction = {handlePlayOrStop} name = {playOrStop}  controlsDisabled = {controlsDisabled}/>
+                            <GenericButton clickFunction = {handleDelete} name = {"remove sound"} controlsDisabled = {controlsDisabled}/>
                         </div>
                     </div>
                 </div>
+                <ControlKnobPanel setMouseMove = {setMouseMove} handleOctave = {handleOctave} octave = {octave} handleGain = {handleGain} gain = {gain}/>
         {/*</div>*/}
         </>
     )
