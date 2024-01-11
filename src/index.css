@@ -12,6 +12,7 @@ body {
   height: 100vh;
   flex-direction : column;
   justify-content: center;
+  margin : 0px;
 }
 .sounds {
   background-color : black;
