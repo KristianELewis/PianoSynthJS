@@ -3,7 +3,7 @@ import React, {useState, useRef} from "react"
 const ControlKnob = (props) => {
     const {setMouseMove, selectionCount, handleFunction, value} = props;
 
-    const rotateRef = useRef(null)
+    const rotateRef = useRef(null) //this only needed to get the positioning for the knobs
     //these need to be refs not state
     const targetX = useRef(0);
     const targetY = useRef(0);
