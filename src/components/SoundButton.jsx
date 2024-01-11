@@ -18,11 +18,11 @@ easiest way to get hover on keys, was to make a keys class and in the app.css ad
             className = "keys"
             onClick = {handleClick}
             style = {{
+                backgroundImage : "url(whiteKey40W.png)",
                 width : "40px", 
                 height : "100px", 
                 backgroundColor : "white", 
                 position : "absolute",
-                border : "1px black solid",
                 top : "0px",
                 left : left + "px",
                 boxSizing : "border-box"
@@ -40,6 +40,7 @@ const BlackKey = (props) => {
             className = "keys"
             onClick = {handleClick}
             style = {{
+                backgroundImage : "url(blackKey20W.png)",
                 width : "20px", 
                 height : "70px", 
                 backgroundColor : "black", 
