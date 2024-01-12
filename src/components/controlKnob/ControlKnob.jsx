@@ -39,7 +39,7 @@ const ControlKnob = (props) => {
     }
 
     return (
-        <div className = "controlKnob" style = {{transform : `rotate(${value * increment}deg)`}} onPointerDown = {e => handleRotate(e)} ref = {rotateRef}>
+        <div className = "controlKnob clickable" style = {{transform : `rotate(${value * increment}deg)`}} onPointerDown = {e => handleRotate(e)} ref = {rotateRef}>
             <div className = "controlKnobLine" onPointerDown = {e => handleRotate(e)}>
             </div>
         </div>

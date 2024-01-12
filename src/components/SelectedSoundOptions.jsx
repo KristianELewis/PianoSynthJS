@@ -28,12 +28,13 @@ const SelectedSoundOptions = (props) => {
         setMouseMove,
         sounds,
         handleAddNewSound,
-        handleSetCurrentSoundID
+        handleSetCurrentSoundID,
+        controlsDisabled,
+        setControlsDisabled
     } = props;
 
     const [playOrStop, setPlayOrStop] = useState("Play")
     const [soundState, setSoundState] = useState(null)
-    const [controlsDisabled, setControlsDisabled] = useState(true);
     let baseFrequency = 16.35;
 
     const handlePlayOrStop = () => {

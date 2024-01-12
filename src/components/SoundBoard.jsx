@@ -20,6 +20,8 @@ const SoundBoard = () => {
     //dispatch is named incorrectly, sounds is also a bad name. Maybe soundModules? and change the component to soundModule?
     const [soundModules, dispatchSound] = useReducer(soundReducer, {sounds : [], currentSoundId : -1, currentIndex : -1})
     const [mouseMove, setMouseMove] = useState(null)
+    //Had to move this up a level
+    const [controlsDisabled, setControlsDisabled] = useState(true);
 
     //These all need to become apart of the sound reducer
 
@@ -72,9 +74,11 @@ const SoundBoard = () => {
                     octave = {soundModules.currentIndex === -1 ? 0 : soundModules.sounds[soundModules.currentIndex].octave} 
                     gain = {soundModules.currentIndex === -1 ? 0 : soundModules.sounds[soundModules.currentIndex].gain} 
                     setMouseMove = {setMouseMove}
+                    controlsDisabled = {controlsDisabled}
+                    setControlsDisabled = {setControlsDisabled}
                 />
             </div>
-            <Keyboard handleButtonClick = {handleButtonClick}></Keyboard>
+            <Keyboard handleButtonClick = {handleButtonClick} controlsDisabled = {controlsDisabled}></Keyboard>
         </div>
         </>
     )

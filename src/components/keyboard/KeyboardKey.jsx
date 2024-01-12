@@ -10,11 +10,11 @@ Maybe I can work some magic with em?
 */
 
  const WhiteKey = (props) => {
-    const {handleClick, placement} = props;
+    const {handleClick, placement, clickClass} = props;
     const left = (40 * placement);
     return (
         <div
-            className = "keys"
+            className = {clickClass}
             onClick = {handleClick}
             style = {{
                 backgroundImage : "url(whiteKey40W.png)",
@@ -32,11 +32,11 @@ Maybe I can work some magic with em?
 }
 
 const BlackKey = (props) => {
-    const {handleClick, placement} = props;
+    const {handleClick, placement, clickClass} = props;
     const left = (40 * placement) -10; //The 11 is half the width of a black key. It so a black key will be inbetween 2 different white keys
     return (
         <div
-            className = "keys"
+            className = {clickClass}
             onClick = {handleClick}
             style = {{
                 backgroundImage : "url(blackKey20W.png)",
@@ -54,14 +54,14 @@ const BlackKey = (props) => {
 }
 
 const KeyboardKey = (props) => {
-    const {handleButtonClick, noteInfo} = props;
+    const {handleButtonClick, noteInfo, clickClass} = props;
     const {baseFrequency, note, type, placement} = noteInfo;
     const handleClick = () => {
         handleButtonClick({baseFrequency: baseFrequency})
     }
     return( 
         <>
-            {type === 0 ? <WhiteKey handleClick = {handleClick} note = {note} placement = {placement}/> : <BlackKey handleClick = {handleClick} note = {note} placement = {placement}/>}
+            {type === 0 ? <WhiteKey clickClass = {clickClass} handleClick = {handleClick} note = {note} placement = {placement}/> : <BlackKey clickClass = {clickClass} handleClick = {handleClick} note = {note} placement = {placement}/>}
         </>
     )
 }

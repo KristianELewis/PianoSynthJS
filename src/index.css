@@ -57,11 +57,16 @@
     margin-top : 2px;
   }
 }
-
-.keys:hover {
+.clickable {
   cursor : pointer;
 }
 
+
+/* I only had the keys class to add the point cursor, I'd rather just have a clickable class
+.keys:hover {
+  cursor : pointer;
+}
+*/
 .soundBoard {
   /*background-color: darkslategray;*/
   display : flex;

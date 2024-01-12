@@ -14,9 +14,12 @@ const WaveButton = (props) => {
     }
 
     if(selectedType === type && !controlsDisabled){
-        buttonClass = "waveButtonSelected"
+        buttonClass = "waveButtonSelected clickable"
     }
-    else{
+    else if(!controlsDisabled){
+        buttonClass = "waveButton clickable"
+    }
+    else {
         buttonClass = "waveButton"
     }
 
