@@ -105,6 +105,7 @@ body {
   width: 210px;
   background-color: black;
   cursor: pointer;
+  text-transform: capitalize;
 }
 .soundButton:hover {
   border-color: white;

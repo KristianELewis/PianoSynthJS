@@ -8,7 +8,7 @@ const SoundModuleSelectionScreen = (props) => {
             <div className = "sounds">
                 {sounds.map((sound) => {
                     return(
-                        <SoundModule key = {sound.id} audioContext = {audioContext} dispatchSound = {dispatchSound} setCurrentSoundId = {handleSetCurrentSoundID} id = {sound.id}/>
+                        <SoundModule key = {sound.id} audioContext = {audioContext} dispatchSound = {dispatchSound} setCurrentSoundId = {handleSetCurrentSoundID} id = {sound.id} waveType = {sound.waveType}/>
                     )
                 })}
                 <button className = "soundButton" onClick = {handleAddNewSound}>Add New Sound</button>

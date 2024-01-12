@@ -8,10 +8,10 @@ class Should be renamed to soundModule
 */
 
 const SoundModule = (props) => {
-    const { setCurrentSoundId, id } = props;
+    const { setCurrentSoundId, id, waveType } = props;
 
     return (
-            <button className = "soundButton" onClick = {()=>{setCurrentSoundId(id)}}>A Sound</button>
+            <button className = "soundButton" onClick = {()=>{setCurrentSoundId(id)}}>A {waveType} Wave</button>
     )
 }
 
