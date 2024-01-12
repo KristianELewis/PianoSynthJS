@@ -1,3 +1,7 @@
+.keys:hover {
+  cursor : pointer;
+}
+
 .soundBoard {
   /*background-color: darkslategray;*/
   display : flex;

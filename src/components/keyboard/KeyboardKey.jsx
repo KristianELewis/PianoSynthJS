@@ -1,13 +1,12 @@
 import React from 'react'
 
 /*
-Probably easiest way to do this would be to have two types of keys
-white key for regular notes and a black key for the sharps and flats
-
-Should changhe this filename to Key
 
 easiest way to get hover on keys, was to make a keys class and in the app.css add a hover option. Really need to get a css style engine
 
+When I want to scale the whole project up depending on screen size, these keys will be an issue. I either need a hook for screen dimensions
+or I need to figure out a way to place the key depending on css.
+Maybe I can work some magic with em?
 */
 
  const WhiteKey = (props) => {

@@ -4,8 +4,9 @@ import notes from '../../notes'
 
 /*
 
-What is this file? am I even using it?
+This was the old way to let the user use their own keyboard.
 
+I'm going to switch over to the useEffect custom hook thing I made for my image Viewer in the desktop app
 */
 
 const KeyboardInput = (props) => {
