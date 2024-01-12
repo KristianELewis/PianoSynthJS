@@ -1,6 +1,12 @@
 import { useState } from 'react'
 
-import notes from '../notes'
+import notes from '../../notes'
+
+/*
+
+What is this file? am I even using it?
+
+*/
 
 const KeyboardInput = (props) => {
     const {handleButtonClick} = props

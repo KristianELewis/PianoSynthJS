@@ -54,7 +54,7 @@ const BlackKey = (props) => {
     )
 }
 
-const SoundButton = (props) => {
+const KeyboardKey = (props) => {
     const {handleButtonClick, noteInfo} = props;
     const {baseFrequency, note, type, placement} = noteInfo;
     const handleClick = () => {
@@ -66,7 +66,7 @@ const SoundButton = (props) => {
         </>
     )
 }
-export default SoundButton;
+export default KeyboardKey;
 //onPointerDown = {handlePointerDown}  onPointerUp = {handlePointerUp}
 
 //        <WhiteKey handleClick = {handleClick} note = {note}/>

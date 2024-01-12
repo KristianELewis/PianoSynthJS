@@ -1,14 +1,18 @@
 import { useState, useRef, useReducer } from 'react'
-import WaveButton from './WaveButton'
-import GenericButton from './GenericButton'
-import ControlKnobPanel from './ControlKnobPanel'
-import NoiseScreen from './NoiseScreen'
+import WaveButton from './buttons/WaveButton'
+import GenericButton from './buttons/GenericButton'
+import ControlKnobPanel from './controlKnob/ControlKnobPanel'
+import SoundModuleSelectionScreen from './soundModule/SoundModuleSelectionScreen'
 
 /*
 When no sound is selected, buttons and dials should be deactivated and visually dark/deactivated looking
 
 when active the cursor should be click cursor
 
+Originally choosing sounds, and they're setting were in different components. This component was dedicated to changin a specific sounds options/setting, hence the name.
+Things have been rearranged since then, and this file and the sound board have become a bit redundant.
+
+There is only really a distinction between the keyboard and the overall settings. Perhaps just call this the settings panel?
 */
 
 
@@ -58,6 +62,14 @@ const SelectedSoundOptions = (props) => {
             }
         }
     }
+    /*==================================
+    MODIFYING A SOUND MODULE
+    Modifying the sound state is a two step process. The checks for (soundState !==null) is to see if the user is currently testing one specific sound. 
+    If they are, then we update it so they can hear the change in real time.
+
+    The second step is a dispatch to the soundReducer state. This updates the sound as its played when the play a note on a keyboard.
+    ==================================*/
+
     const handleOctave = (value) => {
         if(soundState !==null){
             soundState.o.frequency.setValueAtTime((baseFrequency * Math.pow(2, value)), audioContext.currentTime)
@@ -69,7 +81,6 @@ const SelectedSoundOptions = (props) => {
             soundState.g.gain.setValueAtTime(value /100, audioContext.currentTime);
         }
         dispatchSound({type : "ChangeGain", gain : value, id : id})
-
     }
     const handleWaveTypeChange = (value) => {
         if(soundState !==null){
@@ -80,7 +91,6 @@ const SelectedSoundOptions = (props) => {
     const handleDelete = () => {
         if(sounds.length === 1){
             setControlsDisabled(true);
-
         }
         dispatchSound({type : "DeleteSound", id : currentSoundId})
     }
@@ -96,7 +106,7 @@ const SelectedSoundOptions = (props) => {
                 <div id = "waveformContainer">
                     <div id = "waveformDisplayConatiner">
                         {/*<div id = "waveformDisplay">*/}
-                            <NoiseScreen sounds = {sounds} audioContext = {audioContext} dispatchSound = {dispatchSound} handleSetCurrentSoundID = {handleSetCurrentSoundID} handleAddNewSound = {handleAddNewSound2} controlsDisabled = {controlsDisabled}/>
+                            <SoundModuleSelectionScreen sounds = {sounds} audioContext = {audioContext} dispatchSound = {dispatchSound} handleSetCurrentSoundID = {handleSetCurrentSoundID} handleAddNewSound = {handleAddNewSound2} controlsDisabled = {controlsDisabled}/>
                         {/*</div>*/}
                     </div>
                     <div id = "buttonContainer">

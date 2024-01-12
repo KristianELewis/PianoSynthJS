@@ -1,8 +1,8 @@
 import React from 'react'
-import SoundButton from './SoundButton';
+import KeyboardKey from './KeyboardKey';
 import KeyboardInput from './KeyboardInput'
 
-import notes from '../notes'
+import notes from '../../notes'
 
 const Keyboard = (props) => {
 
@@ -13,10 +13,10 @@ const Keyboard = (props) => {
         <div style = {{width : "400px", height : "125px", backgroundImage : "url(pianoPanel400W.png)"}}>
             <div id="keys" style = {{position : "relative", width : "280px", height : "125px", marginLeft : "60px", marginTop : "2px"}}>
                 {notes.map((freqChild) => {
-                    if(freqChild.type === 0) return <SoundButton key = {freqChild.note} handleButtonClick = {handleButtonClick} noteInfo = {freqChild}/>
+                    if(freqChild.type === 0) return <KeyboardKey key = {freqChild.note} handleButtonClick = {handleButtonClick} noteInfo = {freqChild}/>
                 })}
                 {notes.map((freqChild) => {
-                    if(freqChild.type === 1) return <SoundButton key = {freqChild.note} handleButtonClick = {handleButtonClick} noteInfo = {freqChild}/>
+                    if(freqChild.type === 1) return <KeyboardKey key = {freqChild.note} handleButtonClick = {handleButtonClick} noteInfo = {freqChild}/>
                 })}
             </div>
         </div>
