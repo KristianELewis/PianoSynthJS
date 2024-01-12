@@ -107,6 +107,9 @@ body {
   cursor: pointer;
   text-transform: capitalize;
 }
+.soundButton:active{
+  color: lime !important; /*important to overide the inline styles. Probably should do things differently*/
+}
 .soundButton:hover {
   border-color: white;
 }
