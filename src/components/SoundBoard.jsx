@@ -57,7 +57,7 @@ const SoundBoard = () => {
     return (
         <>
         <div className = "soundBoard" onPointerMove = {mouseMove} onPointerLeave = {handleThing} onPointerUp = {handleThing}>
-            <div style = {{ height : "100%", display : "flex", flexDirection : "row", justifyContent : "center", alignItems : "center"}}>
+            <div className = "settingsContainer">
                 {/*The majority of these setters will not do anything and should be removed */}
                 <SelectedSoundOptions 
                     audioContext = {audioContext}

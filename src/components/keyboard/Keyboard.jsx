@@ -10,8 +10,9 @@ const Keyboard = (props) => {
 
     //Easiest way to keep the keyboard centered is to use flex
     return (
-        <div style = {{width : "400px", height : "125px", backgroundImage : "url(pianoPanel400W.png)"}}>
-            <div id="keys" style = {{position : "relative", width : "280px", height : "125px", marginLeft : "60px", marginTop : "2px"}}>
+        <div className = "keyboardContainer">
+            {/*Not sure about this keys ID */}
+            <div id="keys" className = "keyboard">
                 {notes.map((freqChild) => {
                     if(freqChild.type === 0) return <KeyboardKey key = {freqChild.note} handleButtonClick = {handleButtonClick} noteInfo = {freqChild}/>
                 })}
