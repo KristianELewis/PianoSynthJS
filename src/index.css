@@ -76,7 +76,7 @@
   /*background-color: black;*/
 }
 body {
-  background-color: black;
+  background-color: #101010;
   display: flex;
   height: 100vh;
   flex-direction : column;
