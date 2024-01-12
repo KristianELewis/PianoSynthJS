@@ -107,7 +107,7 @@ const SelectedSoundOptions = (props) => {
                 <div id = "waveformContainer">
                     <div id = "waveformDisplayConatiner">
                         {/*<div id = "waveformDisplay">*/}
-                            <SoundModuleSelectionScreen sounds = {sounds} audioContext = {audioContext} dispatchSound = {dispatchSound} handleSetCurrentSoundID = {handleSetCurrentSoundID} handleAddNewSound = {handleAddNewSound2} controlsDisabled = {controlsDisabled}/>
+                            <SoundModuleSelectionScreen sounds = {sounds} audioContext = {audioContext} dispatchSound = {dispatchSound} handleSetCurrentSoundID = {handleSetCurrentSoundID} handleAddNewSound = {handleAddNewSound2} currentSoundId = {currentSoundId}/>
                         {/*</div>*/}
                     </div>
                     <div id = "buttonContainer">

@@ -2,13 +2,13 @@ import React from 'react'
 import SoundModule from './SoundModule';
 
 const SoundModuleSelectionScreen = (props) => {
-    const {sounds, audioContext, dispatchSound, handleSetCurrentSoundID, handleAddNewSound} = props;
+    const {sounds, audioContext, dispatchSound, handleSetCurrentSoundID, handleAddNewSound, currentSoundId} = props;
 
     return (
             <div className = "sounds">
                 {sounds.map((sound) => {
                     return(
-                        <SoundModule key = {sound.id} audioContext = {audioContext} dispatchSound = {dispatchSound} setCurrentSoundId = {handleSetCurrentSoundID} id = {sound.id} waveType = {sound.waveType}/>
+                        <SoundModule key = {sound.id} audioContext = {audioContext} dispatchSound = {dispatchSound} setCurrentSoundId = {handleSetCurrentSoundID} id = {sound.id} waveType = {sound.waveType} currentSoundId = {currentSoundId}/>
                     )
                 })}
                 <button className = "soundButton" onClick = {handleAddNewSound}>Add New Sound</button>
