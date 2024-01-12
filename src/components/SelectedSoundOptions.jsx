@@ -1,5 +1,4 @@
 import { useState, useRef, useReducer } from 'react'
-import ControlKnob from './ControlKnob'
 import WaveButton from './WaveButton'
 import GenericButton from './GenericButton'
 import ControlKnobPanel from './ControlKnobPanel'
@@ -14,14 +13,20 @@ when active the cursor should be click cursor
 
 
 const SelectedSoundOptions = (props) => {
-    const {audioContext, dispatchSound, id, currentSoundId,
-        waveType, setWaveType, 
-        octave, setOctave,
-        gain, setGain, setMouseMove, sounds, handleAddNewSound, handleSetCurrentSoundID} = props;
-    /*if(currentSoundId === null)
-    {
-        return <p>no sound</p>
-    }*/
+    const {
+        audioContext,
+        dispatchSound,
+        id,
+        currentSoundId,
+        waveType,
+        octave,
+        gain,
+        setMouseMove,
+        sounds,
+        handleAddNewSound,
+        handleSetCurrentSoundID
+    } = props;
+
     const [playOrStop, setPlayOrStop] = useState("Play")
     const [soundState, setSoundState] = useState(null)
     const [controlsDisabled, setControlsDisabled] = useState(true);
@@ -57,14 +62,12 @@ const SelectedSoundOptions = (props) => {
         if(soundState !==null){
             soundState.o.frequency.setValueAtTime((baseFrequency * Math.pow(2, value)), audioContext.currentTime)
         }
-        setOctave(value)
         dispatchSound({type : "ChangeOctave", octave : value, id : id})
     }
     const handleGain = (value) => {
         if(soundState !==null){
             soundState.g.gain.setValueAtTime(value /100, audioContext.currentTime);
         }
-        setGain(value)
         dispatchSound({type : "ChangeGain", gain : value, id : id})
 
     }
@@ -72,34 +75,15 @@ const SelectedSoundOptions = (props) => {
         if(soundState !==null){
             soundState.o.type = value;
         }
-        setWaveType(value)
         dispatchSound({type : "ChangeWaveType", waveType : value, id : id})
     }
     const handleDelete = () => {
-        if(sounds.length === 1)
-        {
+        if(sounds.length === 1){
             setControlsDisabled(true);
-            dispatchSound({type : "DeleteSound", id : currentSoundId})
-        }
-        else{
-            //if its not the last sound then we also need to set a new sound
-            //this is a problem. The sound state should be increased to include current sound ID and all of its associated sound stuff.
-            //For now I will just have to go through the array like this
-            console.log(currentSoundId)
-            const index = sounds.findIndex(sound => sound.id === currentSoundId)
-            if(index < sounds.length-1)
-            {
-                handleSetCurrentSoundID(sounds[sounds.length-1].id)
-            }
-            else{
-                handleSetCurrentSoundID(sounds[sounds.length-2].id)
-
-            }
-            dispatchSound({type : "DeleteSound", id : currentSoundId})
 
         }
+        dispatchSound({type : "DeleteSound", id : currentSoundId})
     }
-    
 
     const handleAddNewSound2 = () => { //this needs to be removed when components are consolidated
         setControlsDisabled(false);

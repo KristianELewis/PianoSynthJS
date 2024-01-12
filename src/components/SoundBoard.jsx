@@ -6,19 +6,33 @@ import Keyboard from './Keyboard';
 import NoiseScreen from './NoiseScreen'
 /*
     Im gonna completely rework this soon. The accordian nonsense is annoying me, probably want different event handling for the keyboard, and maybe more options for continous noise and what not
+    
     Everything is being passed from here into the next component. The design has changed enough that this component should just be removed and the next component has taken its place
-*/
+
+    Im currently in the process of making major changes to the sounds reducer. Moving the currently selected sound into the reducer. This will also make the dedicated gain, wavetype, octave states redundant
+    I will focus on moving the reducer into its own file, and getting the state mangement hooked in, I may pass down setters and values differently.
+    */
 
 function soundReducer(state, action) {
     switch (action.type){
-        case "AddSound":
-            return [...state, {id : action.id, waveType : "sine", gain : 50, octave : 4}]
-        case "DeleteSound":
-            const index = state.findIndex(sound => sound.id === action.id)
-            const newarr = state.toSpliced(index, 1)
-            return newarr
+        case "AddSound"://This either needs better destructuring, or it should set the current id and index to the new sound
+            return {sounds: [...state.sounds, {id : action.id, waveType : "sine", gain : 50, octave : 4}], currentSoundId : action.id, currentIndex : state.sounds.length}
+        case "DeleteSound"://This can be refactored for sure
+            if(state.sounds.length === 1)
+            {
+                return {sounds : [], currentSoundId : -1, currentIndex : -1}
+            }
+
+            const index = state.sounds.findIndex(sound => sound.id === action.id)
+            const newarr = state.sounds.toSpliced(index, 1)
+            let newIndex = newarr.length - 1;
+            let newId = newarr[newIndex].id
+
+            return {sounds : newarr, currentSoundId : newId, currentIndex : newIndex}
+
+            //These shouldn't need to change too much
         case "ChangeWaveType":
-            let newSoundState = state.map(sound => {
+            let newSoundState = state.sounds.map(sound => {
                 if (sound.id === action.id)
                 {
                     return {...sound, waveType : action.waveType}
@@ -27,9 +41,9 @@ function soundReducer(state, action) {
                     return sound
                 }
             })
-            return newSoundState
+            return {...state, sounds: newSoundState}
         case "ChangeGain":
-            let newSoundStateG = state.map(sound => {
+            let newSoundStateG = state.sounds.map(sound => {
                 if (sound.id === action.id)
                 {
                     return {...sound, gain : action.gain}
@@ -38,9 +52,9 @@ function soundReducer(state, action) {
                     return sound
                 }
             })
-            return newSoundStateG
+            return {...state, sounds: newSoundStateG}
         case "ChangeOctave":
-            let newSoundStateF = state.map(sound => {
+            let newSoundStateF = state.sounds.map(sound => {
                 if (sound.id === action.id)
                 {
                     return {...sound, octave : action.octave}
@@ -49,29 +63,28 @@ function soundReducer(state, action) {
                     return sound
                 }
             })
-            return newSoundStateF
+            return {...state, sounds: newSoundStateF}
+
+        //new
+        case "setCurrentId":
+            const anotherIndex = state.sounds.findIndex(sound => sound.id === action.id)
+            return {...state, currentSoundId: action.id, currentIndex : anotherIndex}
     }
 }
 
 const SoundBoard = () => {
     const id = useRef(-1);
     const [audioContext, setAudioContext] = useState(() => {return new AudioContext()})
-    const [sounds, dispatchSound] = useReducer(soundReducer, [])
-    const [currentSoundId, setCurrentSoundId] = useState(null)
+    //dispatch is named incorrectly, sounds is also a bad name. Maybe soundModules? and change the component to soundModule?
+    const [soundModules, dispatchSound] = useReducer(soundReducer, {sounds : [], currentSoundId : -1, currentIndex : -1})
 
     const [mouseMove, setMouseMove] = useState(null)
 
-    const [waveType, setWaveType] = useState("sine")
-    const [octave, setOctave] = useState(4);
-    const [gain, setGain] = useState(50);
+    //These all need to become apart of the sound reducer
+
 
     const handleSetCurrentSoundID = (id) => {
-        setCurrentSoundId(id)
-        const index = sounds.findIndex(sound => sound.id === id)
-        const currentSound = sounds[index];
-        setWaveType(currentSound.waveType)
-        setOctave(currentSound.octave)
-        setGain(currentSound.gain)
+        dispatchSound({type : "setCurrentId", id : id})
     }
 
     const handleAddNewSound = () => {
@@ -80,7 +93,7 @@ const SoundBoard = () => {
     }
     const handleButtonClick = (params) => {
         const {baseFrequency} = params;
-        for(const sound of sounds)
+        for(const sound of soundModules.sounds)
         {
             let o = audioContext.createOscillator()
             let g = audioContext.createGain()
@@ -100,22 +113,25 @@ const SoundBoard = () => {
     const handleThing = () =>  {
         setMouseMove(null)
     }
+    // A new solution needs to be figured out for
     return (
         <>
         <div className = "soundBoard" onPointerMove = {mouseMove} onPointerLeave = {handleThing} onPointerUp = {handleThing}>
             <div style = {{ height : "100%", display : "flex", flexDirection : "row", justifyContent : "center", alignItems : "center"}}>
+                {/*The majority of these setters will not do anything and should be removed */}
                 <SelectedSoundOptions 
                     audioContext = {audioContext}
                     dispatchSound = {dispatchSound}
                     handleSetCurrentSoundID = {handleSetCurrentSoundID}
-                    id = {currentSoundId}
-                    currentSoundId = {currentSoundId}
+                    id = {soundModules.currentSoundId}
+                    currentSoundId = {soundModules.currentSoundId}//why are there two versions of this
                     handleAddNewSound = {handleAddNewSound}
-                    sounds = {sounds}
+                    sounds = {soundModules.sounds}
                     handleClick = {handleClick}
-                    waveType = {waveType} setWaveType = {setWaveType}
-                    octave = {octave} setOctave = {setOctave}
-                    gain = {gain} setGain = {setGain} setMouseMove = {setMouseMove}
+                    waveType = {soundModules.currentIndex === -1 ? "sine" : soundModules.sounds[soundModules.currentIndex].waveType} 
+                    octave = {soundModules.currentIndex === -1 ? 0 : soundModules.sounds[soundModules.currentIndex].octave} 
+                    gain = {soundModules.currentIndex === -1 ? 0 : soundModules.sounds[soundModules.currentIndex].gain} 
+                    setMouseMove = {setMouseMove}
                 />
             </div>
             <Keyboard handleButtonClick = {handleButtonClick}></Keyboard>
