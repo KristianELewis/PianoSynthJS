@@ -25,6 +25,14 @@
     margin-left : 60px;
     margin-top : 2px;
   }
+  .keyboardSwitchPanel {
+    width : 400px;
+    height : 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image : url(pianoSwitchPanel400W.png);
+    }
 }
 
 @media (max-width : 499px) {
@@ -54,6 +62,14 @@
     margin-left : 10px;
     margin-top : 2px;
   }
+  .keyboardSwitchPanel {
+    width : 300px;
+    height : 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-image : url(pianoSwitchPanel300W.png);
+    }
 }
 .clickable {
   cursor : pointer;
@@ -112,6 +128,7 @@ body {
 .soundSelection {
   background-color: black;
 }
+
 /*
 #controlKnobsContainer {
   display : flex;

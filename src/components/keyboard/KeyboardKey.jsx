@@ -10,7 +10,7 @@ Maybe I can work some magic with em?
 */
 
  const WhiteKey = (props) => {
-    const {handleClick, placement, clickClass} = props;
+    const {handleClick, placement, clickClass, letter, note, letterDisabled, noteDisabled} = props;
     const left = (40 * placement);
     return (
         <div
@@ -24,16 +24,25 @@ Maybe I can work some magic with em?
                 position : "absolute",
                 top : "0px",
                 left : left + "px",
-                boxSizing : "border-box"
+                boxSizing : "border-box",
+                color: "black",
+                fontSize: "14px",
+                textAlign : "center",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between"
                 }}>
-            
+                <p>{noteDisabled ? " " : note}</p>
+                <p>{letterDisabled ? " " : letter}</p>
         </div>
     )
 }
 
 const BlackKey = (props) => {
-    const {handleClick, placement, clickClass} = props;
+    const {handleClick, placement, clickClass, letter, note, letterDisabled, noteDisabled} = props;
     const left = (40 * placement) -10; //The 11 is half the width of a black key. It so a black key will be inbetween 2 different white keys
+
+
     return (
         <div
             className = {clickClass}
@@ -46,22 +55,29 @@ const BlackKey = (props) => {
                 position : "absolute",
                 top : "0px",
                 left : left + "px",
-                boxSizing : "border-box"
+                boxSizing : "border-box",
+                color: "white",
+                fontSize: "12px",
+                textAlign : "center",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between"
                 }}>
-
+                <p style = {{marginBottom: "0px"}}>{noteDisabled ? " " : note}</p>
+                <p style = {{marginTop: "0px"}}>{letterDisabled ? " " : letter}</p>
         </div>
     )
 }
 
 const KeyboardKey = (props) => {
-    const {handleButtonClick, noteInfo, clickClass} = props;
-    const {baseFrequency, note, type, placement} = noteInfo;
+    const {handleButtonClick, noteInfo, clickClass, letterDisabled, noteDisabled} = props;
+    const {baseFrequency, note, type, placement, letter} = noteInfo;
     const handleClick = () => {
         handleButtonClick({baseFrequency: baseFrequency})
     }
     return( 
         <>
-            {type === 0 ? <WhiteKey clickClass = {clickClass} handleClick = {handleClick} note = {note} placement = {placement}/> : <BlackKey clickClass = {clickClass} handleClick = {handleClick} note = {note} placement = {placement}/>}
+            {type === 0 ? <WhiteKey clickClass = {clickClass} handleClick = {handleClick} letter = {letter} note = {note} placement = {placement} noteDisabled = {noteDisabled} letterDisabled = {letterDisabled} /> : <BlackKey clickClass = {clickClass} handleClick = {handleClick} letter = {letter} note = {note} placement = {placement} noteDisabled = {noteDisabled} letterDisabled = {letterDisabled} />}
         </>
     )
 }

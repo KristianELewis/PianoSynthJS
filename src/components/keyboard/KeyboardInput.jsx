@@ -7,6 +7,8 @@ import notes from '../../notes'
 This was the old way to let the user use their own keyboard.
 
 I'm going to switch over to the useEffect custom hook thing I made for my image Viewer in the desktop app
+
+I guess I should just remove this now
 */
 
 const KeyboardInput = (props) => {
