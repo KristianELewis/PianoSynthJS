@@ -5,11 +5,11 @@ import React from "react";
 const KeyboardSwitch = (props) => {
 
     const {clickFunction, switchState, name} = props
-    let switchClass = "keyboardSwitch"
+    let switchClass = "keyboardSwitch clickable"
 
     if(switchState === false)
     {
-        switchClass = "keyboardSwitchDown"
+        switchClass = "keyboardSwitchDown clickable"
     }
     return (
         <div style = {{display :"flex", flexDirection : "column",  alignItems : "center"}}>
