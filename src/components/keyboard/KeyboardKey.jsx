@@ -10,7 +10,7 @@ Maybe I can work some magic with em?
 */
 
  const WhiteKey = (props) => {
-    const {handleClick, placement, clickClass, letter, note, letterDisabled, noteDisabled} = props;
+    const {handleClick, placement, clickClass, letter, note, letterDisplayed, noteDisplayed} = props;
     const left = (40 * placement);
     return (
         <div
@@ -32,14 +32,14 @@ Maybe I can work some magic with em?
                 flexDirection: "column",
                 justifyContent: "space-between"
                 }}>
-                <p>{noteDisabled ? " " : note}</p>
-                <p>{letterDisabled ? " " : letter}</p>
+                <p>{noteDisplayed ? note : ""}</p>
+                <p>{letterDisplayed ? letter : ""}</p>
         </div>
     )
 }
 
 const BlackKey = (props) => {
-    const {handleClick, placement, clickClass, letter, note, letterDisabled, noteDisabled} = props;
+    const {handleClick, placement, clickClass, letter, note, letterDisplayed, noteDisplayed} = props;
     const left = (40 * placement) -10; //The 11 is half the width of a black key. It so a black key will be inbetween 2 different white keys
 
 
@@ -63,21 +63,21 @@ const BlackKey = (props) => {
                 flexDirection: "column",
                 justifyContent: "space-between"
                 }}>
-                <p style = {{marginBottom: "0px"}}>{noteDisabled ? " " : note}</p>
-                <p style = {{marginTop: "0px"}}>{letterDisabled ? " " : letter}</p>
+                <p style = {{marginBottom: "0px"}}>{noteDisplayed ? note : ""}</p>
+                <p style = {{marginTop: "0px"}}>{letterDisplayed ? letter : ""}</p>
         </div>
     )
 }
 
 const KeyboardKey = (props) => {
-    const {handleButtonClick, noteInfo, clickClass, letterDisabled, noteDisabled} = props;
+    const {handleButtonClick, noteInfo, clickClass, letterDisplayed, noteDisplayed} = props;
     const {baseFrequency, note, type, placement, letter} = noteInfo;
     const handleClick = () => {
         handleButtonClick({baseFrequency: baseFrequency})
     }
     return( 
         <>
-            {type === 0 ? <WhiteKey clickClass = {clickClass} handleClick = {handleClick} letter = {letter} note = {note} placement = {placement} noteDisabled = {noteDisabled} letterDisabled = {letterDisabled} /> : <BlackKey clickClass = {clickClass} handleClick = {handleClick} letter = {letter} note = {note} placement = {placement} noteDisabled = {noteDisabled} letterDisabled = {letterDisabled} />}
+            {type === 0 ? <WhiteKey clickClass = {clickClass} handleClick = {handleClick} letter = {letter} note = {note} placement = {placement} noteDisplayed = {noteDisplayed} letterDisplayed = {letterDisplayed} /> : <BlackKey clickClass = {clickClass} handleClick = {handleClick} letter = {letter} note = {note} placement = {placement} noteDisplayed = {noteDisplayed} letterDisplayed = {letterDisplayed} />}
         </>
     )
 }

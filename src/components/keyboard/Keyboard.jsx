@@ -1,16 +1,15 @@
 import React, {useState} from 'react'
 import KeyboardKey from './KeyboardKey';
 
-import GenericButton from '../buttons/GenericButton';
-
+import KeyboardSwitch from './KeyboardSwitch';
 import notes from '../../notes'
 
 const Keyboard = (props) => {
 
     const {handleButtonClick, controlsDisabled} = props
 
-    const [noteDisabled, setNoteDisabled] = useState(true)
-    const [letterDisabled, setLetterDisabled] = useState(true)
+    const [noteDisplayed, setNoteDisplayed] = useState(false)
+    const [letterDisplayed, setLetterDisplayed] = useState(false)
 
     let clickClass = "";
 
@@ -22,7 +21,7 @@ const Keyboard = (props) => {
         clickClass = "";
     }
     const handleToggleNoteDisplay = () => {
-        setNoteDisabled((prevState) => {
+        setNoteDisplayed((prevState) => {
             if(prevState){
                 return false;
             }
@@ -32,7 +31,7 @@ const Keyboard = (props) => {
         })
     }
     const handleToggleLetterDisplay = () => {
-        setLetterDisabled((prevState) => {
+        setLetterDisplayed((prevState) => {
             if(prevState){
                 return false;
             }
@@ -46,17 +45,17 @@ const Keyboard = (props) => {
     return (
         <>
             <div className = "keyboardSwitchPanel">
-                <GenericButton name = {"Display Note"} controlsDisabled = {false} clickFunction = {handleToggleNoteDisplay}/>
-                <GenericButton name = {"Display Key"} controlsDisabled = {false} clickFunction = {handleToggleLetterDisplay}/>
+                <KeyboardSwitch name = {"Display Note"} clickFunction = {handleToggleNoteDisplay} switchState = {noteDisplayed}/>
+                <KeyboardSwitch name = {"Display Key"} clickFunction = {handleToggleLetterDisplay} switchState = {letterDisplayed}/>
             </div>
             <div className = "keyboardContainer">
                 {/*Not sure about this keys ID */}
                 <div id="keys" className = "keyboard">
                     {notes.map((freqChild) => {
-                        if(freqChild.type === 0) return <KeyboardKey key = {freqChild.note} noteDisabled = {noteDisabled} letterDisabled = {letterDisabled} handleButtonClick = {handleButtonClick} noteInfo = {freqChild} clickClass = {clickClass}/>
+                        if(freqChild.type === 0) return <KeyboardKey key = {freqChild.note} noteDisplayed = {noteDisplayed} letterDisplayed = {letterDisplayed} handleButtonClick = {handleButtonClick} noteInfo = {freqChild} clickClass = {clickClass}/>
                     })}
                     {notes.map((freqChild) => {
-                        if(freqChild.type === 1) return <KeyboardKey key = {freqChild.note} noteDisabled = {noteDisabled} letterDisabled = {letterDisabled} handleButtonClick = {handleButtonClick} noteInfo = {freqChild} clickClass = {clickClass}/>
+                        if(freqChild.type === 1) return <KeyboardKey key = {freqChild.note} noteDisplayed = {noteDisplayed} letterDisplayed = {letterDisplayed} handleButtonClick = {handleButtonClick} noteInfo = {freqChild} clickClass = {clickClass}/>
                     })}
                 </div>
             </div>

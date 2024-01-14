@@ -27,11 +27,11 @@
   }
   .keyboardSwitchPanel {
     width : 400px;
-    height : 50px;
+    height : 100px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-image : url(pianoSwitchPanel400W.png);
+    background-image : url(pianoSwitchPanel400W100H.png);
     }
 }
 
@@ -64,18 +64,28 @@
   }
   .keyboardSwitchPanel {
     width : 300px;
-    height : 50px;
+    height : 100px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-image : url(pianoSwitchPanel300W.png);
+    background-image : url(pianoSwitchPanel300W100H.png);
     }
 }
 .clickable {
   cursor : pointer;
 }
 
+.keyboardSwitch {
+  background-image : url(pianoSwitch20By50.png);
+  width : 20px;
+  height : 50px;
+}
 
+.keyboardSwitchDown {
+  background-image : url(pianoSwitchDown20By50.png);
+  width : 20px;
+  height : 50px;
+}
 /* I only had the keys class to add the point cursor, I'd rather just have a clickable class
 .keys:hover {
   cursor : pointer;
@@ -88,7 +98,7 @@
   justify-content : center;
   align-items: center;
   align-content: center;
-  height : 100vh;
+  min-height : 100vh;
   /*background-color: black;*/
 }
 body {
