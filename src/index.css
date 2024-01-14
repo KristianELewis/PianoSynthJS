@@ -5,7 +5,7 @@
     justify-content: center;
     width: 100px;
     height: 300px;
-    background-image : url(knobPanelVertical.png);
+    background-image : url(/knobPanelVertical.png);
   }
   .settingsContainer {
     display : flex;
@@ -16,7 +16,7 @@
   .keyboardContainer {
     width : 400px;
     height : 125px;
-    background-image : url(pianoPanel400W.png);
+    background-image : url(/pianoPanel400W.png);
   }
   .keyboard {
     position : relative;
@@ -31,7 +31,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-image : url(pianoSwitchPanel400W100H.png);
+    background-image : url(/pianoSwitchPanel400W100H.png);
     }
 }
 
@@ -42,7 +42,7 @@
     justify-content: space-around;
     width : 300px;
     height: 130px;
-    background-image : url(knobPanelHorizontal.png);
+    background-image : url(/knobPanelHorizontal.png);
   }
   .settingsContainer {
     display : flex;
@@ -53,7 +53,7 @@
   .keyboardContainer {
     width : 300px;
     height : 125px;
-    background-image : url(pianoPanel300W.png);
+    background-image : url(/pianoPanel300W.png);
   }
   .keyboard {
     position : relative;
@@ -68,7 +68,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-image : url(pianoSwitchPanel300W100H.png);
+    background-image : url(/pianoSwitchPanel300W100H.png);
     }
 }
 .clickable {
@@ -76,13 +76,13 @@
 }
 
 .keyboardSwitch {
-  background-image : url(pianoSwitch20By50.png);
+  background-image : url(/pianoSwitch20By50.png);
   width : 20px;
   height : 50px;
 }
 
 .keyboardSwitchDown {
-  background-image : url(pianoSwitchDown20By50.png);
+  background-image : url(/pianoSwitchDown20By50.png);
   width : 20px;
   height : 50px;
 }
@@ -181,7 +181,7 @@ body {
   box-sizing : border-box;
   width: 300px;
   height : 300px;
-  background-image: url(waveformContainer.png);
+  background-image: url(/waveformContainer.png);
 }
 #waveformDisplayConatiner {
   box-sizing : border-box;
@@ -201,7 +201,7 @@ body {
   padding: 0px 10px 10px 10px;
 }
 .waveButton {
-  background-image: url(buttonBackground.png);
+  background-image: url(/buttonBackground.png);
   font-size: 10px;
   text-transform: uppercase;
   text-shadow: #ffffff 0px 0px 10px,
@@ -210,7 +210,7 @@ body {
   width: 70px;
 }
 .waveButtonSelected {
-  background-image: url(buttonBackground.png);
+  background-image: url(/buttonBackground.png);
   font-size: 10px;
   text-transform: uppercase;
   box-shadow: 0px 0px 2px yellow;
@@ -221,7 +221,7 @@ body {
   width: 70px;
 }
 .genericButton {
-  background-image: url(buttonBackground.png);
+  background-image: url(/buttonBackground.png);
   font-size: 10px;
   text-transform: uppercase;
   text-shadow: #ffffff 0px 0px 10px,
