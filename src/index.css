@@ -1,4 +1,4 @@
-@media (min-width : 450px) {
+@media (min-width : 400px) {
   #controlKnobsContainer {
     display: flex;
     flex-direction: column;
@@ -35,7 +35,7 @@
     }
 }
 
-@media (max-width : 450px) {
+@media (max-width : 399px) {
   #controlKnobsContainer {
     display: flex;
     flex-direction: row;
