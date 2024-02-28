@@ -176,6 +176,9 @@ body {
   black 0px 0px 3px;
   user-select: none;
   margin: 10px 0px 10px 0px;
+  font-size : 16px;
+  line-height: 18px;
+  /*Line height needs to be expliclty stated because chrome and firefox have different values and it ruins the design*/
 }
 #waveformContainer {
   box-sizing : border-box;
@@ -201,6 +204,7 @@ body {
   padding: 0px 10px 10px 10px;
 }
 .waveButton {
+  /*The buttons look horrible in mozilla, need to figure out how to change that*/
   background-image: url(/buttonBackground.png);
   font-size: 10px;
   text-transform: uppercase;
